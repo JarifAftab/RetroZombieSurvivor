@@ -91,6 +91,18 @@ public class BulletControl : MonoBehaviour {
 			else if(PlayerController.isUp == true){
 				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0,500);
 			}
+			else if(PlayerController.upRight == true){
+				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(354,354);
+			}
+			else if(PlayerController.upLeft == true){
+				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-354,354);
+			}
+			else if(PlayerController.downLeft == true){
+				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-354,-354);
+			}
+			else if(PlayerController.downRight == true){
+				bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(354,-354);
+			}
 		
 			
 		}
