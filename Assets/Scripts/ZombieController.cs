@@ -15,9 +15,11 @@ public class ZombieController : MonoBehaviour {
 	public LayerMask whatIsBullet;
 	public float bulletCheckRadius;
 	
+	//List of all the zombies that have been spawned, used so each can be mainpulated seperately
 	public List<GameObject> zombieList  = new List<GameObject>();
-	public List<int>zombieEraseList = new List<int>();
+	public List<int>zombieEraseList = new List<int>(); //List of zombies to be erased
 	
+	//ZOmbie stastics that get upped everytime 8 zombies are killed
 	public int zombieCount=0;
 	public static int zombieKillCount = 0;
 	public int zombieSpawnCount = 2;
@@ -67,17 +69,7 @@ public class ZombieController : MonoBehaviour {
 			
 		
 		}
-		/*
-		foreach(int i in zombieEraseList){
-			
-			Destroy(zombieList[i]);
-			zombieList.Remove(zombieList[i]);
-			
-			
-		}
-		zombieEraseList = new List<int>();
-	
-		*/
+
 	}
 	
 	public void updateSpawnSpeed(){
