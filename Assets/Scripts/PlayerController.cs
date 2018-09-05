@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour {
 	
 	public Sprite bulletSprite;
 	
+	public GameObject borderX1;
+	public GameObject borderX2;
+	public GameObject borderY1;
+	public GameObject borderY2;
+	
 	public void goLeft(){
 		//coditional to make sure the character is facing the opposite direction, if passed, it goes in the opposite direction and flips the sprite to match direction
 		if(isFacingRight == true && isFacingLeft == false){
@@ -49,6 +54,12 @@ public class PlayerController : MonoBehaviour {
 		downRight = false;
 		downLeft = false;
 		sprite.velocity = new Vector2(-30, 0);
+		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
 	}
 	public void goRight(){
 		//coditional to make sure the character is facing the opposite direction, if passed, it goes in the opposite direction and flips the sprite to match direction
@@ -67,6 +78,12 @@ public class PlayerController : MonoBehaviour {
 		downRight = false;
 		downLeft = false;
 		sprite.velocity = new Vector2(30, 0);
+		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
 	}
 	public void goUp(){
 		isUp = true;
@@ -79,6 +96,13 @@ public class PlayerController : MonoBehaviour {
 		downRight = false;
 		downLeft = false;
 		sprite.velocity = new Vector2(0, 30);
+		
+		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
 	}
 	public void goDown(){
 		isUp = false;
@@ -91,6 +115,13 @@ public class PlayerController : MonoBehaviour {
 		downRight = false;
 		downLeft = false;
 		sprite.velocity = new Vector2(0, -30);
+		
+		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
 	}
 	
 	public void goUpRight(){
@@ -110,6 +141,13 @@ public class PlayerController : MonoBehaviour {
 		downRight = false;
 		downLeft = false;
 		sprite.velocity = new Vector2(21.2f, 21.2f);
+		
+		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
 		
 	}
 	
@@ -131,6 +169,13 @@ public class PlayerController : MonoBehaviour {
 		downLeft = false;
 		sprite.velocity = new Vector2(-21.2f, 21.2f);
 		
+		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
+		
 	}
 	
 	public void goDownLeft(){
@@ -151,6 +196,12 @@ public class PlayerController : MonoBehaviour {
 		downLeft = true;
 		sprite.velocity = new Vector2(-21.2f, -21.2f);
 		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
+		
 	}
 	
 	public void goDownRight(){
@@ -170,6 +221,12 @@ public class PlayerController : MonoBehaviour {
 		downRight = true;
 		downLeft = false;
 		sprite.velocity = new Vector2(21.2f, -21.2f);
+		
+		if(GunsControl.isSpeedPowerup == true){
+			GunsControl.speedPowerupCounter++;
+			sprite.velocity = new Vector2(3 * sprite.velocity.x, 3 * sprite.velocity.y);
+		}
+		
 		
 	}
 	
@@ -195,8 +252,17 @@ public class PlayerController : MonoBehaviour {
 		
 		//Check if player is on the zombie by a certain radius (zombieCheckRadius), from a rigidbody (sprite) for certain layers (whatIsZombie)
 		onZombie = Physics2D.OverlapCircle(sprite.transform.position, zombieCheckRadius, whatIsZombie);
+		
 		if(onZombie){
+			DataPersist.SaveScore();
 			SceneManager.LoadScene ("Lose");
+		}
+		
+		if(sprite.position.x > borderX1.transform.position.x || sprite.position.x < borderX2.transform.position.x){
+			sprite.velocity = new Vector3(-1*sprite.velocity.x, sprite.velocity.y);
+		}
+		if(sprite.position.y > borderY1.transform.position.y || sprite.position.y < borderY2.transform.position.y){
+			sprite.velocity = new Vector3(sprite.velocity.x, -1 * sprite.velocity.y);
 		}
 		
 	}
