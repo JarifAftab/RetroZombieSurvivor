@@ -37,7 +37,7 @@ public class ZombieController : MonoBehaviour {
 	public void spawnZombie(){
 		GameObject zombie = Instantiate(zombieTemplate);
 		zombie.transform.parent = GameObject.Find("Main Camera").transform;
-		zombie.transform.position = new Vector3(Random.Range(-207,212), Random.Range(-164,168), 1);
+		zombie.transform.position = new Vector3(Random.Range(10,475), Random.Range(-15,374), 1);
 		zombie.AddComponent<SpriteRenderer>();
 		zombie.AddComponent<Rigidbody2D>();
 		zombie.GetComponent<Rigidbody2D>().isKinematic = true;
