@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour {
 	public static bool isDown;
 	public static bool isUp;
 	
+	public static bool upRight;
+	public static bool upLeft;
+	public static bool downRight;
+	public static bool downLeft;
+	
 	public Sprite bulletSprite;
 	
 	public void goLeft(){
@@ -38,6 +43,11 @@ public class PlayerController : MonoBehaviour {
 		isLeft = true;
 		isUp = false;
 		isDown = false;
+		
+		upRight = false;
+		upLeft = false;
+		downRight = false;
+		downLeft = false;
 		sprite.velocity = new Vector2(-30, 0);
 	}
 	public void goRight(){
@@ -51,6 +61,11 @@ public class PlayerController : MonoBehaviour {
 		isLeft = false;
 		isUp = false;
 		isDown = false;
+		
+		upRight = false;
+		upLeft = false;
+		downRight = false;
+		downLeft = false;
 		sprite.velocity = new Vector2(30, 0);
 	}
 	public void goUp(){
@@ -58,6 +73,11 @@ public class PlayerController : MonoBehaviour {
 		isDown = false;
 		isLeft = false;
 		isRight = false;
+		
+		upRight = false;
+		upLeft = false;
+		downRight = false;
+		downLeft = false;
 		sprite.velocity = new Vector2(0, 30);
 	}
 	public void goDown(){
@@ -65,7 +85,92 @@ public class PlayerController : MonoBehaviour {
 		isDown = true;
 		isLeft = false;
 		isRight = false;
+		
+		upRight = false;
+		upLeft = false;
+		downRight = false;
+		downLeft = false;
 		sprite.velocity = new Vector2(0, -30);
+	}
+	
+	public void goUpRight(){
+		
+		if(isFacingLeft == true && isFacingRight == false){
+			sprite.GetComponent<Transform>().localScale = new Vector3( sprite.GetComponent<Transform>().localScale.x * -1, sprite.GetComponent<Transform>().localScale.y, sprite.GetComponent<Transform>().localScale.z );	
+			isFacingRight = true;
+			isFacingLeft = false;
+		}
+		isRight = false;
+		isLeft = false;
+		isUp = false;
+		isDown = false;
+		
+		upRight = true;
+		upLeft = false;
+		downRight = false;
+		downLeft = false;
+		sprite.velocity = new Vector2(21.2f, 21.2f);
+		
+	}
+	
+	public void goUpLeft(){
+		
+		if(isFacingLeft == false && isFacingRight == true){
+			sprite.GetComponent<Transform>().localScale = new Vector3( sprite.GetComponent<Transform>().localScale.x * -1, sprite.GetComponent<Transform>().localScale.y, sprite.GetComponent<Transform>().localScale.z );	
+			isFacingRight = false;
+			isFacingLeft = true;
+		}
+		isRight = false;
+		isLeft = false;
+		isUp = false;
+		isDown = false;
+		
+		upRight = false;
+		upLeft = true;
+		downRight = false;
+		downLeft = false;
+		sprite.velocity = new Vector2(-21.2f, 21.2f);
+		
+	}
+	
+	public void goDownLeft(){
+		
+		if(isFacingLeft == false && isFacingRight == true){
+			sprite.GetComponent<Transform>().localScale = new Vector3( sprite.GetComponent<Transform>().localScale.x * -1, sprite.GetComponent<Transform>().localScale.y, sprite.GetComponent<Transform>().localScale.z );	
+			isFacingRight = false;
+			isFacingLeft = true;
+		}
+		isRight = false;
+		isLeft = false;
+		isUp = false;
+		isDown = false;
+		
+		upRight = false;
+		upLeft = false;
+		downRight = false;
+		downLeft = true;
+		sprite.velocity = new Vector2(-21.2f, -21.2f);
+		
+	}
+	
+	public void goDownRight(){
+		
+		if(isFacingLeft == true && isFacingRight == false){
+			sprite.GetComponent<Transform>().localScale = new Vector3( sprite.GetComponent<Transform>().localScale.x * -1, sprite.GetComponent<Transform>().localScale.y, sprite.GetComponent<Transform>().localScale.z );	
+			isFacingRight = true;
+			isFacingLeft = false;
+		}
+		isRight = false;
+		isLeft = false;
+		isUp = false;
+		isDown = false;
+		
+		upRight = false;
+		upLeft = false;
+		downRight = true;
+		downLeft = false;
+		sprite.velocity = new Vector2(21.2f, -21.2f);
+		
 	}
 	
 	
@@ -78,6 +183,11 @@ public class PlayerController : MonoBehaviour {
 		
 		isFacingLeft = true;
 		isFacingRight = false;
+		
+		upRight = false;
+		upLeft = false;
+		downRight = false;
+		downLeft = false;
 	}
 	
 	// Update is called once per frame
